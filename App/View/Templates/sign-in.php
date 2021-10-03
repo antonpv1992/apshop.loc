@@ -1,11 +1,11 @@
 <main class="authorization">
   <div class="wrapper">
-    <form class="form" method="post" action="#">
+    <form class="form" method="post" action="/login">
       <label class="form-input">
-        <input type="text" placeholder="Login">
+        <input type="email" placeholder="Email" name="email">
       </label>
       <label class="form-input">
-        <input type="password" placeholder="Password">
+        <input type="password" placeholder="Password" name="password">
       </label>
       <input type="submit" value="Sign In">
       <div>

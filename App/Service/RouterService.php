@@ -66,15 +66,4 @@ trait RouterService
         }
         return $this->method;
     }
-
-    private function redirect(bool|string $http = false)
-    {
-        if ($http) {
-            $redirect = $http;
-        } else {
-            $redirect = $_SERVER['HTTP_REFERER'] ?? '/';
-        }
-        header("Location: $redirect");
-        exit();
-    }
 }

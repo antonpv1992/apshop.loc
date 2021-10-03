@@ -1,9 +1,15 @@
 <nav class="navigation">
   <div class="wrapper">
     <ul class="navigation-list">
+      <?php if(!isset($_SESSION["email"])): ?>
       <li class="navigation-item <?=$pageTitle === "LoginPage" || $pageTitle === "RegistrationPage" ? "active" : "";?>">
         <a href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
       </li>
+      <?php else: ?>
+      <li class="navigation-item <?=$pageTitle === "LoginPage" || $pageTitle === "RegistrationPage" ? "active" : "";?>">
+        <a href="/logout"><i class="fas fa-sign-in-alt"></i> Logout</a>
+      </li>
+      <?php endif ?>
       <li class="navigation-item <?=$pageTitle === "HomePage" ? "active" : "";?>">
         <a href="/">Home</a>
       </li>

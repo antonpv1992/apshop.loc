@@ -18,5 +18,12 @@ class SignUpController extends Controller
         $this->set(compact('pageTitle'));
         $this->getTemplate();
     }
+
+    public function registration($request = [])
+    {
+        if(is_array($request)) {
+            extract($request);
+        }
+    }
     
 }

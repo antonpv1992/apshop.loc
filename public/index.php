@@ -6,7 +6,9 @@ $routes = require_once CONFIGS . DS . "routes.php";
 
 use App\Controller\BreakController;
 use Framework\Router\Router;
+use Framework\Session\Session;
 
+new Session();
 $url = trim(parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH), '/');
 $router = new Router($routes);
 try{
