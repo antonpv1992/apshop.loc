@@ -333,9 +333,8 @@
 }
 
 .footer a:hover {
-  color: #1abc9c;
+  color: #fff;
 }
-
 
 .breadcrumbs {
   display: flex;
@@ -377,7 +376,8 @@
   display: flex;
   text-align: center;
   flex-wrap: wrap;
-  flex: 0 1 auto;
+  flex: 0 1 70%;
+  background: #fff;
 }
 
 .goods-filters {
@@ -390,6 +390,7 @@
   padding: 10px 10px;
   width: 25%;
   background: rgba(1, 1, 1, 0.02);
+  border: 1px solid #fff
 }
 
 .goods-list .single-good img {
