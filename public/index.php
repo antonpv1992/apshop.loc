@@ -1,7 +1,6 @@
 <?php
 
 require_once dirname(__DIR__). "/Framework/Configs/constants.php";
-//require_once CONFIGS . DS . "autoloader.php";
 require_once "../vendor/autoload.php";
 $routes = require_once CONFIGS . DS . "routes.php";
 
