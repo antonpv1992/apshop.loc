@@ -2,9 +2,6 @@
 
 $routes = [
     '^@get$' => ['controller' => 'Home', 'action' => 'getHomePage'],
-    '^@post$' => ['controller' => 'Home', 'action' => 'testPost'],
-    '^@patch$' => ['controller' => 'Home', 'action' => 'testPatch'],
-    '^@delete$' => ['controller' => 'Home', 'action' => 'testDelete'],
     '^shop@get$' => ['controller' => 'Products', 'action' => 'getProductsPage'],
     '^shop@post$' => ['controller' => 'Products', 'action' => 'searchProducts'],
     '^shop/(?P<category>[a-z-]+)@get$' => ['controller' => 'Products', 'action' => 'getProdsByCat'],

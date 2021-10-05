@@ -8,10 +8,54 @@ use App\Mapper\ProductMapper;
 class Product extends Model
 {
 
-    public function __construct($mapper = true)
+    private $name;
+    private $id;
+    private $alias;
+    private $category;
+    private $brand;
+    private $price;
+    private $oldprice;
+    private $desc;
+    private $screen;
+    private $cpu;
+    private $ram;
+    private $ssd;
+    private $hdd;
+    private $graphics;
+    private $color;
+    private $chipset;
+    private $ramType;
+    private $system;
+    private $hdmi;
+    private $wifi;
+    private $country;
+   
+    public function __construct($fields = [])
     {
-        //ternary operator only for testing, remove later
-        $this->mapper = $mapper ? new ProductMapper() : null;
+        $this->mapper = new ProductMapper();
+        $this->name = $fields["name"] ?? "";
+        $this->id = $fields["id"] ?? "";
+        $this->alias = $fields["alias"] ?? "";
+        $this->image = $fields["image"] ?? "";
+        $this->category = $fields["category"] ?? "";
+        $this->brand = $fields["brand"] ?? "";
+        $this->price = $fields["price"] ?? "";
+        $this->oldprice = $fields["old_price"] ?? "";
+        $this->desc = $fields["desc"] ?? "";
+        $this->screen = $fields["screen"] ?? "";
+        $this->cpu = $fields["cpu"] ?? "";
+        $this->ram = $fields["ram"] ?? "";
+        $this->ssd = $fields["ssd"] ?? "";
+        $this->hdd = $fields["hdd"] ?? "";
+        $this->graphics = $fields["graphics_card"] ?? "";
+        $this->cores =  $fields["cores"] ?? "";
+        $this->color = $fields["color"] ?? "";
+        $this->chipset = $fields["chipset"] ?? "";
+        $this->ramType = $fields["type_of_ram"] ?? "";
+        $this->system = $fields["system"] ?? "";
+        $this->hdmi = $fields["hdmi"] ?? "";
+        $this->wifi = $fields["wifi"] ?? "";
+        $this->country = $fields["country"] ?? "";
     }
     
     public function load($field, $value)
@@ -40,8 +84,7 @@ class Product extends Model
 
     public function setProduct($data)
     {
-        $objProd = new Product(false);
-        $objProd->fields = $data;
+        $objProd = new Product($data);
         return $objProd;
     }
 
@@ -49,9 +92,8 @@ class Product extends Model
     {
         $objProducts = [];
         $index = 0;
-        foreach($products as $key => $product){
+        foreach($products as $product){
             $obj = $this->setProduct($product);
-            $obj->setName($key);
             array_push($objProducts, $obj);
             $index++;
         }
@@ -75,61 +117,146 @@ class Product extends Model
 
     public function getId()
     {
-        return $this->fields['id'] ?? '';
+        return $this->id;
     }
 
     public function getName()
     {
-        return $this->fields['name'] ?? '';
+        return $this->name;
     }
 
     public function getTitle()
     {
-        return $this->fields['title'] ?? '';
+        return $this->title;
     }
 
     public function getCategory()
     {
-        return $this->fields['category'] ?? '';
-    }
-
-    public function getFeatures()
-    {
-        return $this->fields['features'] ?? '';
+        return $this->category;
     }
 
     public function getBrand()
     {
-        return $this->fields['brand'] ?? '';
+        return $this->brand;
     }
 
     public function getImage()
     {
-        return $this->fields['image'] ?? '';
+        return $this->image;
     }
 
     public function getDesc()
     {
-        return $this->fields['desc'] ?? '';
+        return $this->desc;
     }
 
     public function getPrice()
     {
-        return $this->fields['price'] ?? '';
+        return $this->price;
     }
 
     public function getOldPrice()
     {
-        return $this->fields['old_price'] ?? '';
+        return $this->oldprice;
     }
 
     public function getAlias()
     {
-        return $this->fields['alias'] ?? '';
+        return $this->alias;
+    }
+
+    public function getScreen()
+    {
+        return $this->screen;
+    }
+
+    public function getCpu()
+    {
+        return $this->cpu;
+    }
+
+    public function getRam()
+    {
+        return $this->ram;
+    }
+
+    public function getSsd()
+    {
+        return $this->ssd;
+    }
+
+    public function getHdd()
+    {
+        return $this->hdd;
+    }
+
+    public function getGraphics()
+    {
+        return $this->graphics;
+    }
+
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+    public function getCores()
+    {
+        return $this->cores;
+    }
+
+    public function getChipset()
+    {
+        return $this->chipset;
+    }
+
+    public function getRamType()
+    {
+        return $this->ramType;
+    }
+
+    public function getSystem()
+    {
+        return $this->system;
+    }
+
+    public function getHdmi()
+    {
+        return $this->hdmi;
+    }
+
+    public function getWifi()
+    {
+        return $this->wifi;
+    }
+
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    public function getFeatures()
+    {
+        return [
+            "screen" => $this->getScreen(),
+            "cpu" => $this->getCpu(),
+            "ram" => $this->getRam(),
+            "ssd" => $this->getSsd(),
+            "hdd" => $this->getHdd(),
+            "graphics" => $this->getGraphics(),
+            "color" => $this->getColor(),
+            "cores" => $this->getCores(),
+            "chipset" => $this->getChipset(),
+            "type" => $this->getRamType(),
+            "system" => $this->getSystem(),
+            "hdmi" => $this->getHdmi(),
+            "wifi" => $this->getWifi(),
+            "country" => $this->getCountry()
+        ];
     }
 
     public function setName($name)
     {
-        $this->fields['name'] = $name;    
+        $this->name = $name;    
     }
 }

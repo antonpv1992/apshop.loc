@@ -45,7 +45,7 @@ class ProductMapper
     {
         $data = [];
         foreach($this->db as $model => $chars){
-            if($model === $name) {
+            if($chars['name'] === $name) {
                 $data[$model] = $chars;
             }
         }

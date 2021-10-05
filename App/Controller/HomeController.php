@@ -18,19 +18,4 @@ class HomeController extends Controller
         $this->getTemplate();
     }
 
-    public function testPost()
-    {
-        echo "test post request!";
-    }
-
-    public function testPatch()
-    {
-        echo "test patch request!";
-    }
-
-    public function testDelete()
-    {
-        echo "test delete request!";
-    }
-
 }
