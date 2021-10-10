@@ -7,6 +7,7 @@ $routes = require_once CONFIGS . DS . "routes.php";
 use App\Controller\BreakController;
 use Framework\Router\Router;
 use Framework\Session\Session;
+use MyLogger\MyLogger as Logger;
 
 new Session();
 $url = trim(parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH), '/');
@@ -28,4 +29,6 @@ try{
 } catch(Exception $e) {
     $objectController = new BreakController();
     $objectController->notFound($e->getMessage());
+    $logger = new Logger('log/exceptions.log', 'MyLog');
+    $logger->exception($e->getMessage());
 }
