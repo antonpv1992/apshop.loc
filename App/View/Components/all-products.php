@@ -2,9 +2,11 @@
   <div class="wrapper goods">
     <div class="goods-list">
     <?php 
-      foreach($products as $product):
-        include COMPONENTS . DS . "product-card.php";
-      endforeach; 
+      if (is_array($products)) {
+        foreach ($products as $product) {
+          include COMPONENTS . DS . "product-card.php";
+        } 
+      }
     ?>
     </div>
     <?php

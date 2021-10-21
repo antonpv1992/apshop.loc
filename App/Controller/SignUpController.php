@@ -8,12 +8,10 @@ class SignUpController extends Controller
 {
 
     protected $template = "sign-up";
-    
+
     public function getRegistrationPage($request = [])
     {
-        if(is_array($request)) {
-            extract($request);
-        }
+        extract($request);
         $pageTitle = "RegistrationPage";
         $this->set(compact('pageTitle'));
         $this->getTemplate();
@@ -21,9 +19,7 @@ class SignUpController extends Controller
 
     public function registration($request = [])
     {
-        if(is_array($request)) {
-            extract($request);
-        }
+        extract($request);
     }
-    
+
 }

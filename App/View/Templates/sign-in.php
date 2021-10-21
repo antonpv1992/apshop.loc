@@ -10,7 +10,7 @@
       <input type="submit" value="Sign In">
       <div>
         Not registered? => <a href="/registration"><i  class="fas fa-user-plus"></i></a>
-      </d>
+      </div>
     </form>
   </div>
 </main>

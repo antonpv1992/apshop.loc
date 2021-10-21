@@ -2,7 +2,7 @@
 
 namespace App\Service;
 
-trait RouterService 
+trait RouterService
 {
 
     private $method = 'get';
@@ -25,10 +25,10 @@ trait RouterService
         }
         $route["method"] = $this->method;
         $route["params"] = $this->params;
-        if(isset($route["category"])){
+        if (isset($route["category"])) {
             $this->params["category"] = $route["category"];
         }
-        if(isset($route["alias"])){
+        if (isset($route["alias"])) {
             $this->params["alias"] = $route["alias"];
         }
         $route["controller"] = $this->upperCamelCase($route["controller"]);
@@ -38,7 +38,7 @@ trait RouterService
     private function getMethod()
     {
         $method = $_SERVER['REQUEST_METHOD'];
-        switch($method) {
+        switch ($method) {
             case "GET":
                 $this->method = "get";
                 $this->params = $_GET;

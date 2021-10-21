@@ -19,12 +19,15 @@
       <li class="navigation-item <?=$pageTitle === "CategoryPage" ? "active" : "";?>">
         <a href="/shop/laptop">Category</a>
       </li>
+      <li class="navigation-item <?=$pageTitle === "HistoryPage" ? "active" : "";?>">
+        <a href="/history">History</a>
+      </li>
       <li class="navigation-item <?=$pageTitle === "ProductPage" ? "active" : "";?>">
         <a href="">Other</a>
       </li>
       <li class="navigation-item">
-        <form method="post" action="shop">
-          <input type="text" value="" placeholder="Search">
+        <form method="post" action="/shop/search">
+          <input type="text" name="search" value="" placeholder="Search">
           <label>
             <i class="fas fa-search-plus"></i>
             <input type="submit" value="">

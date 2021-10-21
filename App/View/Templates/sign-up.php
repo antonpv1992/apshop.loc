@@ -13,7 +13,7 @@
       <input type="submit" value="Sign Up">
       <div>
         Already registered? => <a href="/login"><i class="fas fa-user-check"></i></a>
-      </d>
+      </div>
     </form>
   </div>
 </main>

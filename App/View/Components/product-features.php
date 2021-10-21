@@ -10,7 +10,7 @@
     <?php foreach($product->getFeatures() as $title => $value):
     ?>
       <div class="single-char">
-        <span><?=$title?>: </span> <?=$value?>
+        <span><?=implode(' ', explode('_', $title))?>: </span> <?=$value?>
       </div>
     <?php
       endforeach;   

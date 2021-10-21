@@ -1,12 +1,12 @@
 <section class="product-box">
   <div class="product-image">
-    <img src="<?=$product->getImage();?>" alt="laptop">
+    <img src="<?="/assets/images/" . $product->getImage()?>" alt="laptop">
   </div>
   <div class="product-info">
-    <h3><?=$product->getName();?></h3>
+    <h3><?=$product->getFullTitle();?></h3>
     <h5><?=$product->getPrice();?></h5>
     <p>
-      <?=$product->getDesc();?>
+      <?=$product->getDescription();?>
     </p>
     <div class="product-quantity">
       <input type="button" value="-">

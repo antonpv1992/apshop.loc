@@ -2,41 +2,41 @@
 
 namespace App\Controller;
 
-use App\Model\Product;
+use App\Mapper\ProductMapper;
 use Framework\Core\Controller;
 
 class ProductsController extends Controller
 {
 
     protected $template = "products";
-    
+
     public function getProductsPage($request = [])
     {
-        if(is_array($request)) {
-            extract($request);
-        }
+        extract($request);
         $pageTitle = "ShopPage";
-        $model = new Product();
-        $products = $model->getAllProducts();
+        $mapper = new ProductMapper();
+        $products = $mapper->getAllProducts();
         $this->set(compact('pageTitle', 'products'));
         $this->getTemplate();
     }
 
     public function getProdsByCat($request = [])
     {
-        if(is_array($request)) {
-            extract($request);
-        }
+        extract($request);
         $pageTitle = "CategoryPage";
-        $model = new Product();
-        $products = $model->load('category', ucfirst($category));
+        $mapper = new ProductMapper();
+        $products = $mapper->getProductsByCaetgory($category);
         $this->set(compact('pageTitle', 'products'));
         $this->getTemplate();
     }
 
-    public function searchProducts()
+    public function searchProducts($request = [])
     {
-        echo "Welcome from search!";
-        // to be continue ...
+        extract($request);
+        $pageTitle = "SearchPage";
+        $mapper = new ProductMapper();
+        $products = $mapper->getProductsBySearch($search);
+        $this->set(compact('pageTitle', 'products'));
+        $this->getTemplate();
     }
 }

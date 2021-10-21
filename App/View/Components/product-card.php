@@ -1,29 +1,21 @@
 <div class="single-good">
-  <a href="">
-    <img src=<?=$product->getImage();?> alt="laptop">
+  <a href="<?="/shop/" . $product->getCategory() . "/" . $product->getAlias()?>">
+    <img src="<?="/assets/images/" . $product->getImage()?>" alt="laptop">
     <h4>
-      <?=$product->getName();?>
+      <?=$product->getTitle();?>
     </h4>
   </a>
   <p>
-    <span>$500</span>
+    <span><?=$product->getOldPrice()?></span>
     <i><?=$product->getPrice()?></i>
   </p>
   <div class="characteristics">
-      <div class="single-char">
-        <span>brand: </span> <?=$product->getBrand()?>
-      </div>
-      <div class="single-char">
-        <span>type: </span> <?=$product->getCategory()?>
-      </div>
-    <?php foreach($product->getFeatures() as $title => $value):
-    ?>
-      <div class="single-char">
-        <span><?=$title?>: </span> <?=$value?>
-      </div>
-    <?php
-      endforeach;   
-    ?>
+    <div class="single-char">
+      <span>brand: </span> <?=$product->getBrand()?>
+    </div>
+    <div class="single-char">
+      <span>type: </span> <?=$product->getCategory()?>
+    </div>
   </div>
   <a class="check-product">
     <i class="fa fa-shopping-cart"></i>

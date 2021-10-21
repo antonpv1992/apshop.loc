@@ -12,9 +12,7 @@ class SignInController extends Controller
 
     public function getLoginPage($request = [])
     {
-        if(is_array($request)) {
-            extract($request);
-        }
+        extract($request);
         $pageTitle = "LoginPage";
         $this->set(compact('pageTitle'));
         $this->getTemplate();
@@ -24,10 +22,8 @@ class SignInController extends Controller
     {
         $reg_email = "admin@apshop.com";
         $reg_pass = "qwerty";
-        if(is_array($request)) {
-            extract($request);
-        }
-        if($email === $reg_email && $password === $reg_pass){
+        extract($request);
+        if ($email === $reg_email && $password === $reg_pass) {
             $session = new Session();
             $session->setKeyInSession("email", $email);
             $session->setKeyInSession("password", $password);
@@ -37,5 +33,5 @@ class SignInController extends Controller
         header("Location: /login");
         exit();
     }
-    
+
 }

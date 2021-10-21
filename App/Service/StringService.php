@@ -2,16 +2,31 @@
 
 namespace App\Service;
 
-trait StringService 
+trait StringService
 {
+    private function lowerCamelCase(string $name)
+    {
+        return lcfirst($this->upperCamelCase($name));
+    }
+
     private function upperCamelCase(string $name)
     {
         return str_replace(' ', '', ucwords(str_replace('-', ' ', $name)));
     }
 
-    private function lowerCamelCase(string $name)
+    private function generateAlias($text)
     {
-        return lcfirst($this->upperCamelCase($name));
+        return strtolower(
+            implode(
+                "-",
+                array_filter(
+                    explode(' ', $this->transliterate($text)),
+                    function ($key) {
+                        return $key !== "-";
+                    }
+                )
+            )
+        );
     }
 
     private function transliterate($text)
@@ -31,21 +46,6 @@ trait StringService
         ];
         $symbols = ["-", "_", "/", "\\", "@", "$", "^", "&", "*", "~", "`"];
         return str_ireplace($symbols, "-", strtr($text, $alphabet));
-    }
-
-    private function generateAlias($text)
-    {
-        return strtolower(
-            implode(
-                "-",
-                array_filter(
-                    explode(' ', $this->transliterate($text)),
-                    function ($key) {
-                        return $key !== "-";
-                    }
-                )
-            )
-        );
     }
 
     private function aliasCollision($alias)

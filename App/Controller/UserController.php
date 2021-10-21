@@ -11,13 +11,10 @@ class UserController extends Controller
 
     public function getProfile($request = [])
     {
-        
-        if(is_array($request)) {
-            extract($request);
-        }
+        extract($request);
         $pageTitle = "UserPage";
         $this->set(compact('pageTitle'));
         $this->getTemplate();
     }
-    
+
 }

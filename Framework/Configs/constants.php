@@ -20,6 +20,7 @@ const CONFIGS = FRAMEWORK . DS . "Configs";
 const CORE = FRAMEWORK . DS . "Core";
 const DATABASE = FRAMEWORK . DS . "Database";
 const HELPERS = FRAMEWORK . DS . "Helpers";
+const PAGINATION = FRAMEWORK . DS . "Pagination";
 const ROUTER = FRAMEWORK . DS . "Router";
 const SESSION = FRAMEWORK . DS . "Session";
 const STYLES = ASSETS . DS . "styles";

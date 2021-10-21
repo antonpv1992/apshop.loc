@@ -8,7 +8,7 @@ class View
 {
     private $layout;
     private $template;
-    
+
     public function __construct($layout = LAYOUT, $template = "home")
     {
         $this->layout = $layout;
@@ -17,7 +17,7 @@ class View
 
     public function render($data, $template = "home")
     {
-        if(is_array($data)){
+        if (is_array($data)) {
             extract($data);
         }
         $this->template = !$template ? $this->template : $template;

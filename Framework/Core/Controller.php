@@ -23,7 +23,7 @@ abstract class Controller
 
     public function set($data)
     {
-        $this->data = $data;    
+        $this->data = $data;
     }
 
 }

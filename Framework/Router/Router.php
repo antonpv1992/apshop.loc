@@ -10,13 +10,13 @@ class Router
 {
 
     use RouterService, StringService;
-   
+
     private $routes = [];
     private $route = [];
 
     public function __construct(array $routes = [])
     {
-        foreach($routes as $regexp => $route){
+        foreach($routes as $regexp => $route) {
             $this->routes[$regexp] = $route;
         }
     }

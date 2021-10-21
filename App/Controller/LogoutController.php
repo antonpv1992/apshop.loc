@@ -7,7 +7,7 @@ use Framework\Session\Session;
 
 class LogoutController extends Controller
 {
-    
+
     public function logout($request = [])
     {
         $session = new Session();

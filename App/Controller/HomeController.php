@@ -2,19 +2,21 @@
 
 namespace App\Controller;
 
+use App\Mapper\ProductMapper;
 use Framework\Core\Controller;
 
 class HomeController extends Controller
 {
-    protected $template = "home"; 
+    protected $template = "home";
 
     public function getHomePage($request = [])
     {
-        if(is_array($request)) {
-            extract($request);
-        }
+        extract($request);
         $pageTitle = "HomePage";
-        $this->set(compact('pageTitle'));
+        $pmapper = new ProductMapper();
+        $newProducts = $pmapper->getHomeProducts("new");
+        $hotProducts = $pmapper->getHomeProducts("hot");
+        $this->set(compact("pageTitle", "newProducts", "hotProducts"));
         $this->getTemplate();
     }
 

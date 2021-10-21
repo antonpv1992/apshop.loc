@@ -3,116 +3,39 @@
 namespace App\Model;
 
 use Framework\Core\Model;
-use App\Mapper\ProductMapper;
 
 class Product extends Model
 {
 
-    private $name;
     private $id;
-    private $alias;
-    private $category;
+    private $title;
+    private $fullTitle;
+    private $description;
     private $brand;
+    private $category;
     private $price;
-    private $oldprice;
-    private $desc;
-    private $screen;
-    private $cpu;
-    private $ram;
-    private $ssd;
-    private $hdd;
-    private $graphics;
-    private $color;
-    private $chipset;
-    private $ramType;
-    private $system;
-    private $hdmi;
-    private $wifi;
-    private $country;
-   
+    private $oldPrice;
+    private $alias;
+    private $image;
+    private $features;
+    private $isNew;
+    private $isHot;
+
     public function __construct($fields = [])
     {
-        $this->mapper = new ProductMapper();
-        $this->name = $fields["name"] ?? "";
         $this->id = $fields["id"] ?? "";
+        $this->title = $fields["title"] ?? "";
+        $this->fullTitle = $fields["full_title"] ?? "";
+        $this->description = $fields["description"] ?? "";
+        $this->brand = $fields["brand"] ?? "";
+        $this->category = $fields["category"] ?? "";
+        $this->price = $fields["price"] ?? "";
+        $this->oldPrice = $fields["old_price"] ?? "";
         $this->alias = $fields["alias"] ?? "";
         $this->image = $fields["image"] ?? "";
-        $this->category = $fields["category"] ?? "";
-        $this->brand = $fields["brand"] ?? "";
-        $this->price = $fields["price"] ?? "";
-        $this->oldprice = $fields["old_price"] ?? "";
-        $this->desc = $fields["desc"] ?? "";
-        $this->screen = $fields["screen"] ?? "";
-        $this->cpu = $fields["cpu"] ?? "";
-        $this->ram = $fields["ram"] ?? "";
-        $this->ssd = $fields["ssd"] ?? "";
-        $this->hdd = $fields["hdd"] ?? "";
-        $this->graphics = $fields["graphics_card"] ?? "";
-        $this->cores =  $fields["cores"] ?? "";
-        $this->color = $fields["color"] ?? "";
-        $this->chipset = $fields["chipset"] ?? "";
-        $this->ramType = $fields["type_of_ram"] ?? "";
-        $this->system = $fields["system"] ?? "";
-        $this->hdmi = $fields["hdmi"] ?? "";
-        $this->wifi = $fields["wifi"] ?? "";
-        $this->country = $fields["country"] ?? "";
-    }
-    
-    public function load($field, $value)
-    {
-        $dbdata = $this->mapper->getByField($field, $value);
-        return $this->setProducts($dbdata);
-    }
-
-    public function save()
-    {
-        $this->mapper->save($this);
-    }
-
-    public function saveProducts($products)
-    {
-        foreach($products as $product){
-            $this->mapper->save($product);
-        }
-    }
-
-    public function set($data)
-    {
-        $this->fields = $data;
-        return $this;
-    }
-
-    public function setProduct($data)
-    {
-        $objProd = new Product($data);
-        return $objProd;
-    }
-
-    public function setProducts($products)
-    {
-        $objProducts = [];
-        $index = 0;
-        foreach($products as $product){
-            $obj = $this->setProduct($product);
-            array_push($objProducts, $obj);
-            $index++;
-        }
-        return $objProducts;
-    }
-
-    public function get()
-    {
-        return $this;
-    }
-
-    public function getAllProducts()
-    {
-        return $this->setProducts($this->mapper->getAll());
-    }
-
-    public function searchByQuery($params = [], $condition = false, $order = false, $limit = false)
-    {
-        return $this->setProducts($this->mapper->getByQuery($params, $condition, $order, $limit));
+        $this->features = $fields["features"] ?? [];
+        $this->isNew = $fields["new"] ?? "";
+        $this->isHot = $fields["hot"] ?? "";
     }
 
     public function getId()
@@ -120,9 +43,9 @@ class Product extends Model
         return $this->id;
     }
 
-    public function getName()
+    public function setId($id)
     {
-        return $this->name;
+        $this->id = $id;
     }
 
     public function getTitle()
@@ -130,9 +53,29 @@ class Product extends Model
         return $this->title;
     }
 
-    public function getCategory()
+    public function setTitle($title)
     {
-        return $this->category;
+        $this->title = $title;
+    }
+
+    public function getFullTitle()
+    {
+        return $this->fullTitle;
+    }
+
+    public function setFullTitle($fullTitle)
+    {
+        $this->fullTitle = $fullTitle;
+    }
+
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    public function setDescription($description)
+    {
+        $this->description = $description;
     }
 
     public function getBrand()
@@ -140,14 +83,19 @@ class Product extends Model
         return $this->brand;
     }
 
-    public function getImage()
+    public function setBrand($brand)
     {
-        return $this->image;
+        $this->brand = $brand;
     }
 
-    public function getDesc()
+    public function getCategory()
     {
-        return $this->desc;
+        return $this->category;
+    }
+
+    public function setCategory($category)
+    {
+        $this->category = $category;
     }
 
     public function getPrice()
@@ -155,9 +103,19 @@ class Product extends Model
         return $this->price;
     }
 
+    public function setPrice($price)
+    {
+        $this->price = $price;
+    }
+
     public function getOldPrice()
     {
-        return $this->oldprice;
+        return $this->oldPrice;
+    }
+
+    public function setOldPrice($oldPrice)
+    {
+        $this->oldPrice = $oldPrice;
     }
 
     public function getAlias()
@@ -165,98 +123,48 @@ class Product extends Model
         return $this->alias;
     }
 
-    public function getScreen()
+    public function setAlias($alias)
     {
-        return $this->screen;
+        $this->alias = $alias;
     }
 
-    public function getCpu()
+    public function getImage()
     {
-        return $this->cpu;
+        return $this->image;
     }
 
-    public function getRam()
+    public function setImage($image)
     {
-        return $this->ram;
-    }
-
-    public function getSsd()
-    {
-        return $this->ssd;
-    }
-
-    public function getHdd()
-    {
-        return $this->hdd;
-    }
-
-    public function getGraphics()
-    {
-        return $this->graphics;
-    }
-
-    public function getColor()
-    {
-        return $this->color;
-    }
-
-    public function getCores()
-    {
-        return $this->cores;
-    }
-
-    public function getChipset()
-    {
-        return $this->chipset;
-    }
-
-    public function getRamType()
-    {
-        return $this->ramType;
-    }
-
-    public function getSystem()
-    {
-        return $this->system;
-    }
-
-    public function getHdmi()
-    {
-        return $this->hdmi;
-    }
-
-    public function getWifi()
-    {
-        return $this->wifi;
-    }
-
-    public function getCountry()
-    {
-        return $this->country;
+        $this->image = $image;
     }
 
     public function getFeatures()
     {
-        return [
-            "screen" => $this->getScreen(),
-            "cpu" => $this->getCpu(),
-            "ram" => $this->getRam(),
-            "ssd" => $this->getSsd(),
-            "hdd" => $this->getHdd(),
-            "graphics" => $this->getGraphics(),
-            "color" => $this->getColor(),
-            "cores" => $this->getCores(),
-            "chipset" => $this->getChipset(),
-            "type" => $this->getRamType(),
-            "system" => $this->getSystem(),
-            "hdmi" => $this->getHdmi(),
-            "wifi" => $this->getWifi(),
-            "country" => $this->getCountry()
-        ];
+        return $this->features;
     }
 
-    public function setName($name)
+    public function setFeatures($features)
     {
-        $this->name = $name;    
+        $this->features = $features;
+    }
+
+    public function getNew()
+    {
+        return $this->isNew;
+    }
+
+    public function getHot()
+    {
+        return $this->isHot;
+    }
+
+    public function setNew($new)
+    {
+        $this->isNew = $new;
+    }
+
+    public function setHot($hot)
+    {
+        $this->isHot = $hot;
     }
 }
