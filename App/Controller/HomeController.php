@@ -7,17 +7,16 @@ use Framework\Core\Controller;
 
 class HomeController extends Controller
 {
-    protected $template = "home";
+    protected $template = 'home';
 
     public function getHomePage($request = [])
     {
         extract($request);
-        $pageTitle = "HomePage";
+        $pageTitle = 'HomePage';
         $pmapper = new ProductMapper();
-        $newProducts = $pmapper->getHomeProducts("new");
-        $hotProducts = $pmapper->getHomeProducts("hot");
-        $this->set(compact("pageTitle", "newProducts", "hotProducts"));
-        $this->getTemplate();
+        $newProducts = $pmapper->getHomeProducts('new');
+        $hotProducts = $pmapper->getHomeProducts('hot');
+        return compact('pageTitle', 'newProducts', 'hotProducts');
     }
 
 }

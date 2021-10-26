@@ -8,12 +8,14 @@ use Framework\Session\Session;
 class LogoutController extends Controller
 {
 
+    protected $template = "";
+    
     public function logout($request = [])
     {
         $session = new Session();
         $session->sessionClean();
-        header("Location: /");
-        exit();
+        header('Location: /');
+        return [];
     }
 
 }

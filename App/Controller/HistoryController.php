@@ -12,7 +12,7 @@ class HistoryController extends Controller
 
     use HistoryService;
 
-    protected $template = "history";
+    protected $template = 'history';
     private $perpage = 4;
 
     public function getHistory($request)
@@ -23,18 +23,16 @@ class HistoryController extends Controller
         $pagination = new Pagination($page ?? 1, $this->perpage, $mapper->countQuery('order_product'));
         $start = $pagination->getStart();
         $orders = $mapper->getPaginationOrders(" $start, $this->perpage");
-        $this->set(compact("pageTitle", "orders", "pagination"));
-        $this->getTemplate();
+        return compact('pageTitle', 'orders', 'pagination');
     }
 
     public function sortHistory($request)
     {
         extract($request);
-        $pageTitle = "HistorySearch";
+        $pageTitle = 'HistorySearch';
         $mapper = new OrderMapper();
         $orders = $mapper->getSortOrders($this->prepareSortData($request));
-        $this->set(compact("pageTitle", "orders"));
-        $this->getTemplate();
+        return compact('pageTitle', 'orders');
     }
 
 }

@@ -3,37 +3,39 @@
 namespace App\Service;
 
 use App\Mapper\ProductMapper;
-use App\Model\Order;
+use Framework\Helpers\Sql;
 
 trait OrderService
 {
-    protected function dataToOrder($data)
+    
+    protected function ordersQuery($conditions = false, $order = false, $direction = 'DESC', $limit = false)
     {
-        if (empty($data)) {
-            return [];
-        }
-        return new Order($data);
-    }
-
-    protected function dataToOrders($data)
-    {
-        if (empty($data)) {
-            return [];
-        }
-        $orders = [];
-        foreach ($data as $order) {
-            array_push($orders, new Order($order));
-        }
-        return $orders;
+        $sqlO = new Sql();
+        return $sqlO->select([
+            "`order`.id", "`order`.status", "`order`.created_at", "`order`.updated_at", "user.login", "op.quantity", "op.price", "product.title", "product.alias", "category.name AS category"
+        ], $this->table) 
+        . $sqlO->join([
+            "user" => "user.id = `order`.`user_id`",
+            "order_product as op" => "op.order_id = `order`.id",
+            "product" => "product.id = op.product_id",
+            "product_category" => "product_category.product_id = product.id",
+            "category" => "product_category.category_id = category.id"
+        ])
+        . $sqlO->where($conditions)
+        . $sqlO->order($order, $direction)
+        . $sqlO->limit($limit);
     }
 
     private function prepareWhereOrders($data)
     {
-        $where = '';
-        foreach ($data['filter'] as $filter) {
-            $where .= $where === ''
-                ? "WHERE user.id = 2 AND $filter LIKE '%$data[search]%' " //change user later
-                : "OR $filter LIKE '%$data[search]%' ";
+        $where = [];
+        for($i = 0; $i < count($data['filter']); $i++) {
+            $key = $data['filter'][$i] . " LIKE '%$data[search]%'";
+            if ($i === 0) {
+                array_push($where, [$key => ""]);
+            } else {
+                array_push($where, [$key => "OR"]);
+            }
         }
         return $where;
     }

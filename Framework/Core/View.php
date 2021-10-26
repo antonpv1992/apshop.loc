@@ -17,8 +17,9 @@ class View
 
     public function render($data, $template = "home")
     {
-        if (is_array($data)) {
-            extract($data);
+        extract($data);
+        if ($template === "") {
+            return; 
         }
         $this->template = !$template ? $this->template : $template;
         $fileView = TEMPLATES . DS . $template . ".php";

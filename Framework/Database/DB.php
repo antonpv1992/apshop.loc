@@ -11,12 +11,12 @@ class DB
 
     private function __construct()
     {
-        $config = require_once CONFIGS . DS . "dbconfig.php";
+        require_once ROOT. DS . "conf.php";
         $options = [
-            //\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
             \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
         ];
-        $this->db = new \PDO($config['dsn'], $config['user'], $config['pass'], $options);
+        $this->db = new \PDO(DB_CONNECTION . ":host=" . DB_HOST . ";dbname=" . DB_DATABASE . ";charset=utf8",
+                        DB_USERNAME, DB_PASSWORD, $options);
     }
 
     public static function instance()
@@ -45,7 +45,7 @@ class DB
         if ($stmt->execute([]) !== false) {
             return $stmt->rowCount();
         }
-        return 0;
+        return false;
     }
 
     public function countByQuery($sql, $params = [])
@@ -57,7 +57,7 @@ class DB
         if ($stmt->execute($params) !== false) {
             return $stmt->rowCount();
         }
-        return 0;
+        return false;
     }
 
     public function insertOrder($data)
@@ -71,7 +71,7 @@ class DB
             $this->insertOrderProduct($data, $orderId);
             $this->db->commit();
         } catch (Exception $e) {
-            //echo $e->getMessage();
+            throw new Exception('transaction failed');
         }
         return true;
     }

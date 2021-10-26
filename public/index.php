@@ -7,6 +7,7 @@ $routes = require_once CONFIGS . DS . "routes.php";
 use App\Controller\BreakController;
 use Framework\Router\Router;
 use Framework\Session\Session;
+
 use MyLogger\MyLogger as Logger;
 
 new Session();
@@ -19,7 +20,9 @@ try {
         $objectController = new $classController();
         $classAction = $router->getAction();
         if (method_exists($objectController, $classAction)) {
-            $objectController->$classAction($router->getRequest());
+            $pageData = $objectController->$classAction($router->getRequest());
+            $objectController->set($pageData);
+            $objectController->getTemplate();
         } else {
             throw new Exception("Not found action", 404);
         }

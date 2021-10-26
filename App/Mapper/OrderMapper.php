@@ -4,64 +4,41 @@ namespace App\Mapper;
 
 use App\Service\OrderService;
 use Framework\Core\Mapper;
+use Framework\Helpers\Sql;
 
 class OrderMapper extends Mapper
 {
 
     use OrderService;
 
+    protected $table = "`order`";
+    protected $model = "App\\Model\\Order";
+
     public function getAllOrders()
     {
-        $sql = "SELECT `order`.id, `order`.status, `order`.created_at, `order`.updated_at, user.login, op.quantity, op.price, product.title, product.alias, category.name AS category
-                FROM `order`
-                JOIN user ON user.id = `order`.`user_id`
-                JOIN order_product as op ON op.order_id = `order`.id
-                JOIN product ON product.id = op.product_id
-                JOIN product_category ON product_category.product_id = product.id
-                JOIN category ON product_category.category_id = category.id
-                WHERE user.id = :userID
-                ";
+        $sql = $this->ordersQuery([['user.id = :userID' => ""]]);
         $dbData = $this->storage->query($sql, ['userID' => 2]);//change user later
-        return isset($dbData[0])
-            ? $this->dataToOrders($dbData)
-            : (!empty($dbData) ? [$this->dataToOrder($dbData)] : false);
+        return $this->getMapObjects($dbData);
     }
 
     public function getPaginationOrders($limit)
     {
-        $sql = "SELECT `order`.id, `order`.status, `order`.created_at, `order`.updated_at, user.login, op.quantity, op.price, product.title, product.alias, category.name AS category
-                FROM `order`
-                JOIN user ON user.id = `order`.`user_id`
-                JOIN order_product as op ON op.order_id = `order`.id
-                JOIN product ON product.id = op.product_id
-                JOIN product_category ON product_category.product_id = product.id
-                JOIN category ON product_category.category_id = category.id
-                WHERE user.id = :userID
-                LIMIT $limit
-                ";
+        $sql = $this->ordersQuery([['user.id = :userID' => ""]], false, false, $limit);
         $dbData = $this->storage->query($sql, ['userID' => 2]);//change user later
-        return isset($dbData[0])
-            ? $this->dataToOrders($dbData)
-            : (!empty($dbData) ? [$this->dataToOrder($dbData)] : false);
+        return $this->getMapObjects($dbData);
     }
 
     public function getSortOrders($data)
     {
         $where = $this->prepareWhereOrders($data);
-        $sort = !empty($data['sortCategory']) ? "ORDER BY $data[sortCategory] $data[sortDirection]" : '';
-        $sql = "SELECT `order`.id, `order`.status, `order`.created_at, `order`.updated_at, user.login, op.quantity, op.price, product.title, product.alias, category.name AS category
-                FROM `order`
-                JOIN user ON user.id = `order`.`user_id`
-                JOIN order_product as op ON op.order_id = `order`.id
-                JOIN product ON product.id = op.product_id
-                JOIN product_category ON product_category.product_id = product.id
-                JOIN category ON product_category.category_id = category.id
-                $where
-                $sort";
+        $order = $direction = false;
+        if(!empty($data['sortCategory'])) {
+            $order = $data['sortCategory'];
+            $direction = $data['sortDirection'];
+        }
+        $sql = $this->ordersQuery($where, $order, $direction);
         $dbData = $this->storage->query($sql);
-        return isset($dbData[0])
-            ? $this->dataToOrders($dbData)
-            : (!empty($dbData) ? [$this->dataToOrder($dbData)] : false);
+        return $this->getMapObjects($dbData);
     }
 
     public function saveOrder($order)
@@ -89,17 +66,21 @@ class OrderMapper extends Mapper
 
     public function getAmountOfProduct($id)
     {
-        $sql = "SELECT amount FROM product_storage WHERE storage_id = 1 AND product_id = $id";
+        $sqlO = new Sql();
+        $sql = $sqlO->select(['amount'], 'product_storage') . $sqlO->where([['storage_id = 1' => ""], ["product_id = $id" => "AND"]]);
         $amount = $this->storage->query($sql);
         return is_array($amount) ? $amount['amount'] : $amount;
     }
 
-    public function getCountOrdersByUser()
+    public function getCountOrdersByUser($id)
     {
-        $sql = "SELECT * FROM `order`
-                JOIN user ON user.id = `order`.user_id
-                JOIN order_product as op ON op.order_id = `order`.id
-                WHERE user.id = :userID";
-        return $this->storage->countByQuery($sql, ['userID' => 2]);//change user later
+        $sqlO = new Sql();
+        $sql = $sqlO->select(['*'], $this->table) 
+            . $sqlO->join([
+                'user' => "user.id = `order`.user_id", 
+                'order_product as op' => "op.order_id = `order`.id"
+                ]) 
+            . $sqlO->where([["user.id = :userID" => ""]]);
+        return $this->storage->countByQuery($sql, ['userID' => $id]);
     }
 }

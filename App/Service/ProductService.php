@@ -2,11 +2,41 @@
 
 namespace App\Service;
 
-use App\Model\Product;
+use Framework\Helpers\Sql;
 
 trait ProductService
 {
 
+    protected function productsWithFeatures($conditions = false)
+    {
+        $sqlO = new Sql();
+        return $sqlO->select([
+                'product.*',
+                $sqlO->concat('category.name', 'category', 'DISTINCT'),
+                $sqlO->concat("feature.feature, ';', fv.value", 'features', 'DISTINCT')
+            ], $this->table) 
+            . $sqlO->join([
+                'product_category' => 'product_category.product_id = product.id',
+                'category' => 'product_category.category_id = category.id',
+                'product_feature_value AS pfv' => 'pfv.product_id = product.id',
+                'feature_value AS fv' => 'fv.id = pfv.feature_value_id',
+                'feature' => 'feature.id = pfv.feature_value_feature_id'
+            ]) 
+            . $sqlO->where($conditions)
+            . $sqlO->group('product.id');
+    }
+
+    protected function productsWithoutFeatures($conditions = false, $limit = false)
+    {
+        $sqlO = new Sql();
+        return $sqlO->select([
+                'product.*', 'category.name AS category'
+            ], $this->table) . $sqlO->join([
+                'product_category' => 'product_category.product_id = product.id',
+                'category' => 'product_category.category_id = category.id'
+            ]) . $sqlO->where($conditions) . $sqlO->limit($limit);
+    }
+    
     protected function transformFeatures($data)
     {
         if (empty($data)) {
@@ -38,25 +68,5 @@ trait ProductService
             }
         }
         return $feat;
-    }
-
-    protected function dataToProduct($data)
-    {
-        if (empty($data)) {
-            return [];
-        }
-        return new Product($data);
-    }
-
-    protected function dataToProducts($data)
-    {
-        if (empty($data)) {
-            return [];
-        }
-        $products = [];
-        foreach ($data as $product) {
-            array_push($products, new Product($product));
-        }
-        return $products;
     }
 }

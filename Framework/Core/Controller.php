@@ -26,4 +26,13 @@ abstract class Controller
         $this->data = $data;
     }
 
+    public function jsonSerialize($array)
+    {
+        $serializeArray = [];
+        foreach($array as $obj) {
+            array_push($serializeArray, $obj->jsonSerialize());
+        };
+        return $serializeArray;
+    }
+
 }

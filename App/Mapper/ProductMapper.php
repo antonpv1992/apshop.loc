@@ -9,132 +9,72 @@ class ProductMapper extends Mapper
 {
     use ProductService;
 
+    protected $model = 'App\\Model\\Product';
+    protected $table = 'product';
+
     public function getFullProducts()
     {
-        $sql = "SELECT product.*,
-            GROUP_CONCAT(DISTINCT category.name) AS category,
-            GROUP_CONCAT(DISTINCT feature.feature, ';', fv.value) AS features
-            FROM product
-            JOIN product_category ON product_category.product_id = product.id
-            JOIN category ON product_category.category_id = category.id
-            JOIN product_feature_value AS pfv ON pfv.product_id = product.id
-            JOIN feature_value AS fv ON fv.id = pfv.feature_value_id
-            JOIN feature ON feature.id = pfv.feature_value_feature_id
-            GROUP BY product.id";
+        $sql = $this->productsWithFeatures();
         $dbData = $this->storage->query($sql);
         $prepareData = $this->transformFeatures($dbData);
-        return isset($prepareData[0])
-            ? $this->dataToProducts($prepareData)
-            : (!empty($prepareData) ? [$this->dataToProduct($prepareData)] : false);
+        return $this->getMapObjects($prepareData);
     }
 
     public function getAllProducts()
     {
-        $sql = "SELECT product.*, category.name AS category 
-                FROM product
-                JOIN product_category ON product_category.product_id = product.id
-                JOIN category ON product_category.category_id = category.id";
+        $sql = $this->productsWithoutFeatures();
         $dbData = $this->storage->query($sql);
-        return isset($dbData[0])
-            ? $this->dataToProducts($dbData)
-            : (!empty($dbData) ? [$this->dataToProduct($dbData)] : false);
+        return $this->getMapObjects($dbData);
     }
 
     public function getFullProductById($id)
     {
-        $sql = "SELECT product.*,
-            GROUP_CONCAT(DISTINCT category.name) AS category,
-            GROUP_CONCAT(DISTINCT feature.feature, ';', fv.value) AS features
-            FROM product
-            JOIN product_category ON product_category.product_id = product.id
-            JOIN category ON product_category.category_id = category.id
-            JOIN product_feature_value AS pfv ON pfv.product_id = product.id
-            JOIN feature_value AS fv ON fv.id = pfv.feature_value_id
-            JOIN feature ON feature.id = pfv.feature_value_feature_id
-            WHERE product.id = :productID
-            GROUP BY product.id";
+        $sql = $this->productsWithFeatures([['product.id = :productID' => ""]]);
         $dbData = $this->storage->query($sql, ['productID' => $id]);
         $prepareData = $this->transformFeatures($dbData);
-        return $this->dataToProduct($prepareData);
+        return $this->dataToModel($prepareData, $this->model);
     }
 
     public function getProductById($id)
     {
-        $sql = "SELECT product.*, category.name AS category 
-                FROM product
-                JOIN product_category ON product_category.product_id = product.id
-                JOIN category ON product_category.category_id = category.id
-                WHERE product.id = :productID";
+        $sql = $this->productsWithoutFeatures([['product.id = :productID' => '']]);
         $dbData = $this->storage->query($sql, ['productID' => $id]);
-        return $this->dataToProduct($dbData);
+        return $this->dataToModel($dbData, $this->model);
     }
 
     public function getFullProductByAlias($alias)
     {
-        $sql = "SELECT product.*,
-            GROUP_CONCAT(DISTINCT category.name) AS category,
-            GROUP_CONCAT(DISTINCT feature.feature, ';', fv.value) AS features
-            FROM product
-            JOIN product_category ON product_category.product_id = product.id
-            JOIN category ON product_category.category_id = category.id
-            JOIN product_feature_value AS pfv ON pfv.product_id = product.id
-            JOIN feature_value AS fv ON fv.id = pfv.feature_value_id
-            JOIN feature ON feature.id = pfv.feature_value_feature_id
-            WHERE product.alias = :alias
-            GROUP BY product.id";
+        $sql = $this->productsWithFeatures([['product.alias = :alias' => ""]]);
         $dbData = $this->storage->query($sql, ['alias' => $alias]);
         $prepareData = $this->transformFeatures($dbData);
-        return $this->dataToProduct($prepareData);
+        return $this->dataToModel($prepareData, $this->model);
     }
 
     public function getProductByAlias($alias)
     {
-        $sql = "SELECT product.*, category.name AS category 
-                FROM product
-                JOIN product_category ON product_category.product_id = product.id
-                JOIN category ON product_category.category_id = category.id
-                WHERE product.alias = :alias";
+        $sql = $this->productsWithoutFeatures([['product.alias = :alias' => '']]);
         $dbData = $this->storage->query($sql, ['alias' => $alias]);
-        return $this->dataToProduct($dbData);
+        return $this->dataToModel($dbData, $this->model);
     }
 
     public function getHomeProducts($field)
     {
-        $sql = "SELECT product.*, category.name AS category 
-                FROM product
-                JOIN product_category ON product_category.product_id = product.id
-                JOIN category ON product_category.category_id = category.id
-                WHERE product.$field = 1
-                LIMIT 4";
+        $sql = $this->productsWithoutFeatures([["product.$field = 1" => '']], 4);
         $dbData = $this->storage->query($sql);
-        return isset($dbData[0])
-            ? $this->dataToProducts($dbData)
-            : (!empty($dbData) ? [$this->dataToProduct($dbData)] : false);
+        return $this->getMapObjects($dbData);
     }
 
     public function getProductsByCaetgory($category)
     {
-        $sql = "SELECT product.*, category.name AS category 
-                FROM product
-                JOIN product_category ON product_category.product_id = product.id
-                JOIN category ON product_category.category_id = category.id
-                WHERE category.name = :category";
+        $sql = $this->productsWithoutFeatures([['category.name = :category' => '']]);
         $dbData = $this->storage->query($sql, ['category' => $category]);
-        return isset($dbData[0])
-            ? $this->dataToProducts($dbData)
-            : (!empty($dbData) ? [$this->dataToProduct($dbData)] : false);
+        return $this->getMapObjects($dbData);
     }
 
     public function getProductsBySearch($search)
     {
-        $sql = "SELECT product.*, category.name AS category 
-                FROM product
-                JOIN product_category ON product_category.product_id = product.id
-                JOIN category ON product_category.category_id = category.id
-                WHERE product.title LIKE '%$search%'";
+        $sql = $this->productsWithoutFeatures([["product.title LIKE '%$search%'" => '']]);
         $dbData = $this->storage->query($sql);
-        return isset($dbData[0])
-            ? $this->dataToProducts($dbData)
-            : (!empty($dbData) ? [$this->dataToProduct($dbData)] : false);
+        return $this->getMapObjects($dbData);
     }
 }

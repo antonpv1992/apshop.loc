@@ -8,30 +8,29 @@ use Framework\Session\Session;
 class SignInController extends Controller
 {
 
-    protected $template = "sign-in";
+    protected $template = 'sign-in';
 
     public function getLoginPage($request = [])
     {
         extract($request);
-        $pageTitle = "LoginPage";
-        $this->set(compact('pageTitle'));
-        $this->getTemplate();
+        $pageTitle = 'LoginPage';
+        return compact('pageTitle');
     }
 
     public function authorization($request = [])
     {
-        $reg_email = "admin@apshop.com";
-        $reg_pass = "qwerty";
+        $reg_email = 'admin@apshop.com';
+        $reg_pass = 'qwerty';
         extract($request);
         if ($email === $reg_email && $password === $reg_pass) {
             $session = new Session();
-            $session->setKeyInSession("email", $email);
-            $session->setKeyInSession("password", $password);
-            header("Location: /");
-            exit();
+            $session->setKeyInSession('email', $email);
+            $session->setKeyInSession('password', $password);
+            header('Location: /');
+            return [];
         }
-        header("Location: /login");
-        exit();
+        header('Location: /login');
+        return [];
     }
 
 }

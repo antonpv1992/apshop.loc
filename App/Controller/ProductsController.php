@@ -8,35 +8,32 @@ use Framework\Core\Controller;
 class ProductsController extends Controller
 {
 
-    protected $template = "products";
+    protected $template = 'products';
 
     public function getProductsPage($request = [])
     {
         extract($request);
-        $pageTitle = "ShopPage";
+        $pageTitle = 'ShopPage';
         $mapper = new ProductMapper();
         $products = $mapper->getAllProducts();
-        $this->set(compact('pageTitle', 'products'));
-        $this->getTemplate();
+        return compact('pageTitle', 'products');
     }
 
     public function getProdsByCat($request = [])
     {
         extract($request);
-        $pageTitle = "CategoryPage";
+        $pageTitle = 'CategoryPage';
         $mapper = new ProductMapper();
         $products = $mapper->getProductsByCaetgory($category);
-        $this->set(compact('pageTitle', 'products'));
-        $this->getTemplate();
+        return compact('pageTitle', 'products');
     }
 
     public function searchProducts($request = [])
     {
         extract($request);
-        $pageTitle = "SearchPage";
+        $pageTitle = 'SearchPage';
         $mapper = new ProductMapper();
         $products = $mapper->getProductsBySearch($search);
-        $this->set(compact('pageTitle', 'products'));
-        $this->getTemplate();
+        return compact('pageTitle', 'products');
     }
 }

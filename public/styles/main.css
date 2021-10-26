@@ -438,12 +438,12 @@
 }
 
 .goods-list .single-good p {
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 
 .characteristics .single-char {
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   border-bottom: 1px solid #fff;
   font-size: 18px;
 }
@@ -459,7 +459,6 @@
 .goods-list .single-good .check-product {
   display: block;
   margin-top: auto;
-  /*margin-top: 10px;*/
 }
 
 .goods-filters h5 {
@@ -849,4 +848,37 @@
 .pagination .pagination-item .pagination-link-dotts i{
   position:absolute;
   top:0
+}
+
+.spinner {
+  width: 80px;
+  height: 100px;
+  margin: 150px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.spinner-row {
+  display: flex;
+}
+
+.spinner-block {
+  position: relative;
+  box-sizing: border-box;
+  margin: 0 10px 10px 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  background: #1abc9c;
+}
+
+.spinner-block:nth-child(4n+1) { animation: wave 2s ease .0s infinite; }
+.spinner-block:nth-child(4n+2) { animation: wave 2s ease .2s infinite; }
+.spinner-block:nth-child(4n+3) { animation: wave 2s ease .4s infinite; }
+.spinner-block:nth-child(4n+4) { animation: wave 2s ease .6s infinite; margin-right: 0; }
+
+@keyframes wave {
+  0%   { top: 0;     opacity: 1; }
+  50%  { top: 30px;  opacity: .2; }
+  100% { top: 0;     opacity: 1; }
 }

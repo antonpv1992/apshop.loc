@@ -7,14 +7,13 @@ use Framework\Core\Controller;
 class SignUpController extends Controller
 {
 
-    protected $template = "sign-up";
+    protected $template = 'sign-up';
 
     public function getRegistrationPage($request = [])
     {
         extract($request);
-        $pageTitle = "RegistrationPage";
-        $this->set(compact('pageTitle'));
-        $this->getTemplate();
+        $pageTitle = 'RegistrationPage';
+        return compact('pageTitle');
     }
 
     public function registration($request = [])

@@ -11,4 +11,9 @@ class User extends Model
     {
     }
 
+    public function jsonSerialize()
+    {
+        return get_object_vars($this);
+    }
+
 }

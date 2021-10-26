@@ -131,4 +131,9 @@ class Order extends Model
     {
         $this->updatedAt = $updatedAt;
     }
+
+    public function jsonSerialize()
+    {
+        return get_object_vars($this);
+    }
 }

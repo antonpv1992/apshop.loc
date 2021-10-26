@@ -167,4 +167,9 @@ class Product extends Model
     {
         $this->isHot = $hot;
     }
+
+    public function jsonSerialize()
+    {
+        return get_object_vars($this);
+    }
 }

@@ -7,14 +7,13 @@ use Framework\Core\Controller;
 class UserController extends Controller
 {
 
-    protected $template = "home";
+    protected $template = 'home';
 
     public function getProfile($request = [])
     {
         extract($request);
-        $pageTitle = "UserPage";
-        $this->set(compact('pageTitle'));
-        $this->getTemplate();
+        $pageTitle = 'UserPage';
+        return compact('pageTitle');
     }
 
 }
