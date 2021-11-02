@@ -104,3 +104,18 @@
 [Tue Oct 26 15:31:18 2021] MyLog Exception: could not find driver
 [Tue Oct 26 15:31:18 2021] MyLog Exception: could not find driver
 [Tue Oct 26 18:12:40 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'product.new = 1' at line 1
+[Sun Oct 31 22:20:19 2021] MyLog Exception: could not find driver
+[Sun Oct 31 22:20:38 2021] MyLog Exception: could not find driver
+[Sun Oct 31 22:20:40 2021] MyLog Exception: could not find driver
+[Sun Oct 31 22:26:18 2021] MyLog Exception: could not find driver
+[Sun Oct 31 22:41:41 2021] MyLog Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'product.new' in 'where clause'
+[Sun Oct 31 22:44:22 2021] MyLog Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'product.new' in 'where clause'
+[Sun Oct 31 22:44:24 2021] MyLog Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'product.new' in 'where clause'
+[Mon Nov 01 23:10:28 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@test.loc, $2y$10$Li0shDpIcRTOaFHhOo1WwesvMviFZe09XzBTp8MEN6JfvXixrF4B.)' at line 1
+[Mon Nov 01 23:12:51 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@test.loc, $2y$10$Hw.fbBSFe5YnWbt8BH29KOAUIZadhonDJ8R5siTzUZ5/rxN5uXABy)' at line 1
+[Mon Nov 01 23:13:21 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@test.loc, $2y$10$boJwsq8YAHt9W.BRNuwJ.eU7D7JMTZyqtS9vnOFOXwvLFjHnw2dAa)' at line 1
+[Mon Nov 01 23:16:18 2021] MyLog Exception: SQLSTATE[HY000]: General error: 1364 Field 'id' doesn't have a default value
+[Mon Nov 01 23:30:57 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '), 'test1', 'test1@test.loc', '$2y$10$G4pPld55uzziAcxqSE7.WeRN4t569NFppMgFJ5n0DX' at line 1
+[Mon Nov 01 23:31:53 2021] MyLog Exception: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '2' for key 'user.PRIMARY'
+[Mon Nov 01 23:34:13 2021] MyLog Exception: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '4' for key 'user.PRIMARY'
+[Tue Nov 02 10:33:37 2021] MyLog Exception: Not found controller

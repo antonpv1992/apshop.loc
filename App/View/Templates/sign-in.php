@@ -2,7 +2,7 @@
   <div class="wrapper">
     <form class="form" method="post" action="/login">
       <label class="form-input">
-        <input type="email" placeholder="Email" name="email">
+        <input type="text" placeholder="Login" name="login">
       </label>
       <label class="form-input">
         <input type="password" placeholder="Password" name="password">

@@ -14,3 +14,4 @@
     ?>
   </div>
 </main>
+<script defer src="/scripts/shop-page.js"></script> 

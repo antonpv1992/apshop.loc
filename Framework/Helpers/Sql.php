@@ -81,9 +81,9 @@ class Sql
 
     }
 
-    public function insert()
+    public function insert($table, $fields, $values)
     {
-
+        return "INSERT INTO $table ($fields) VALUES ($values)";
     }
 
     public function delete()

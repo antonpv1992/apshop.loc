@@ -31,6 +31,9 @@ trait RouterService
         if (isset($route["alias"])) {
             $this->params["alias"] = $route["alias"];
         }
+        if (isset($route["id"])) {
+            $this->params["id"] = $route["id"];
+        }
         $route["controller"] = $this->upperCamelCase($route["controller"]);
         return $route;
     }

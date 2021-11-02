@@ -11,12 +11,13 @@ class DB
 
     private function __construct()
     {
-        require_once ROOT. DS . "conf.php";
+        $_ = function($func) {
+            return $func;
+        };
         $options = [
             \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
         ];
-        $this->db = new \PDO(DB_CONNECTION . ":host=" . DB_HOST . ";dbname=" . DB_DATABASE . ";charset=utf8",
-                        DB_USERNAME, DB_PASSWORD, $options);
+        $this->db = new \PDO("{$_( getenv('DB_CONNECTION'))}:host={$_( getenv('DB_HOST'))};dbname={$_( getenv('DB_DATABASE'))};charset=utf8", getenv('DB_USERNAME'), getenv('DB_PASSWORD'), $options);
     }
 
     public static function instance()

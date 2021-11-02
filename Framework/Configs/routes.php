@@ -4,6 +4,8 @@ $routes = [
     '^@get$' => ['controller' => 'Home', 'action' => 'getHomePage'],
     '^shop@get$' => ['controller' => 'Products', 'action' => 'getProductsPage'],
     '^api/shop@get$' => ['controller' => 'Api\\Products', 'action' => 'read'],
+    '^api/users@get$' => ['controller' => 'Api\\User', 'action' => 'read'],
+    '^api/user/(?P<id>[0-9]+)@get$' => ['controller' => 'Api\\User', 'action' => 'show'],
     '^shop/search@post$' => ['controller' => 'Products', 'action' => 'searchProducts'],
     '^shop/(?P<category>[a-z-]+)@get$' => ['controller' => 'Products', 'action' => 'getProdsByCat'],
     '^shop/(?P<category>[a-z-]+)/(?P<alias>[a-z0-9-]+)@get$' => ['controller' => 'Product', 'action' => 'getProductPage'],

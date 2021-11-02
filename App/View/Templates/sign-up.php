@@ -2,6 +2,9 @@
   <div class="wrapper">
     <form class="form" method="post" action="/registration">
       <label class="form-input">
+        <input type="text" placeholder="Login" name="login">
+      </label>
+      <label class="form-input">
         <input type="email" placeholder="Email" name="email">
       </label>
       <label class="form-input">
