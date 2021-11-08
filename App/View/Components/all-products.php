@@ -1,17 +1,8 @@
 <main class="main-products">
   <div class="wrapper goods">
-    <div class="goods-list">
-    <?php 
-      if (is_array($products)) {
-        foreach ($products as $product) {
-          include COMPONENTS . DS . "product-card.php";
-        } 
-      }
-    ?>
-    </div>
+    <product-list></product-list>
     <?php
       include_once COMPONENTS . DS . "aside-products.php";
     ?>
   </div>
 </main>
-<script defer src="/scripts/shop-page.js"></script> 

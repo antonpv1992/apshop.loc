@@ -1,4 +1,5 @@
-<ul class="checkout-good">
+
+<!--<ul class="checkout-good">
   <li>
     <a href="">
       <image src="/assets/images/laptop.jpg" alt="laptop">
@@ -14,4 +15,4 @@
     <input type="button" value="+">
   </li>
   <li>450$</li>
-</ul>
+</ul>-->

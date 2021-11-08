@@ -35,4 +35,9 @@ abstract class Controller
         return $serializeArray;
     }
 
+    public function jsonModelSerialize($model)
+    {
+        return $model->jsonSerialize();
+    }
+
 }

@@ -12,11 +12,13 @@
   <script defer src="/scripts/main.js"></script>
 </head>
 <body>
+  <div id="app">
   <?php
-  require_once COMPONENTS . DS . "header.php";
-  require_once COMPONENTS . DS . "navigation.php";
-  echo $content;
-  require_once COMPONENTS . DS . "footer.php";
-  ?>
+    require_once COMPONENTS . DS . "header.php";
+    require_once COMPONENTS . DS . "navigation.php";
+    echo $content;
+    require_once COMPONENTS . DS . "footer.php";
+    ?>
+  </div>
 </body>
 </html>

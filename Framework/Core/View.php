@@ -17,7 +17,9 @@ class View
 
     public function render($data, $template = "home")
     {
-        extract($data);
+        if(is_array($data)) {
+            extract($data);
+        }
         if ($template === "") {
             return; 
         }

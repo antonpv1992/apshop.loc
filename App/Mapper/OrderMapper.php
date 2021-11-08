@@ -43,22 +43,8 @@ class OrderMapper extends Mapper
 
     public function saveOrder($order)
     {
-        $tempOrder = [
-            0 => [
-                'id' => 2,
-                'quantity' => 1
-            ],
-            1 => [
-                'id' => 3,
-                'quantity' => 1
-            ],
-            2 => [
-                'id' => 9,
-                'quantity' => 2
-            ]
-        ];
-        if ($this->checkAmountProducts($tempOrder)) {
-            $prepareOrder = $this->checkOrderProducts($tempOrder);
+        if ($this->checkAmountProducts($order)) {
+            $prepareOrder = $this->checkOrderProducts($order);
             return $this->storage->insertOrder($prepareOrder);
         }
         return false;
