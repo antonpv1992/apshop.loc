@@ -1,8 +1,6 @@
 <main class="main-products">
   <div class="wrapper goods">
     <product-list></product-list>
-    <?php
-      include_once COMPONENTS . DS . "aside-products.php";
-    ?>
+    <aside-products></aside-products>
   </div>
 </main>

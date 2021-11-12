@@ -64,7 +64,7 @@ class ProductMapper extends Mapper
         return $this->getMapObjects($dbData);
     }
 
-    public function getProductsByCaetgory($category)
+    public function getProductsByCategory($category)
     {
         $sql = $this->productsWithoutFeatures([['category.name = :category' => '']]);
         $dbData = $this->storage->query($sql, ['category' => $category]);
@@ -74,6 +74,13 @@ class ProductMapper extends Mapper
     public function getProductsBySearch($search)
     {
         $sql = $this->productsWithoutFeatures([["product.title LIKE '%$search%'" => '']]);
+        $dbData = $this->storage->query($sql);
+        return $this->getMapObjects($dbData);
+    }
+
+    public function getFilteredProducts($search, $filters)
+    {
+        $sql = $this->searchAndFilter($search, $filters);
         $dbData = $this->storage->query($sql);
         return $this->getMapObjects($dbData);
     }

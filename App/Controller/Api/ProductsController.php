@@ -2,6 +2,7 @@
 
 namespace App\Controller\Api;
 
+use App\Mapper\FeatureMapper;
 use App\Mapper\ProductMapper;
 use App\Mapper\OrderMapper;
 use Framework\Core\Controller;
@@ -48,7 +49,7 @@ class ProductsController extends Controller
     {
         extract($request);
         $mapper = new ProductMapper();
-        $products = $mapper->getProductsByCaetgory($category);
+        $products = $mapper->getProductsByCategory($category);
         echo json_encode($this->jsonSerialize($products));
         return [];
     }
@@ -60,5 +61,34 @@ class ProductsController extends Controller
         extract($request);
         $mapper = new OrderMapper();
         echo json_encode($mapper->saveOrder($order));
+        return [];
+    }
+
+    public function search($request = [])
+    {
+        header('Content-type: application/json');
+        $request['search'] = json_decode(file_get_contents('php://input'), true);
+        extract($request);
+        $mapper = new ProductMapper();
+        $products = $mapper->getProductsBySearch($search);
+        echo json_encode($this->jsonSerialize($products));
+    }
+
+    public function filtered($request = [])
+    {
+        header('Content-type: application/json');
+        $request['data'] = json_decode(file_get_contents('php://input'), true);
+        extract($request['data']);
+        $mapper = new ProductMapper();
+        $products = $mapper->getFilteredProducts($search, $filters);
+        echo json_encode($this->jsonSerialize($products));
+    }
+
+    public function features($request = [])
+    {
+        extract($request);
+        $mapper = new FeatureMapper();
+        $features = $mapper->getFeatures();
+        echo json_encode($this->jsonSerialize($features));
     }
 }

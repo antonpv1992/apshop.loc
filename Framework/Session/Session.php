@@ -47,6 +47,14 @@ class Session
         return false;
     }
 
+    public static function getSessionKey($key)
+    {
+        if (isset($_SESSION[$key])) {
+            return $_SESSION[$key];
+        }
+        return false;
+    }
+
     public function getAllSession()
     {
         return $_SESSION;

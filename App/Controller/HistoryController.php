@@ -6,6 +6,7 @@ use App\Mapper\OrderMapper;
 use App\Service\HistoryService;
 use Framework\Core\Controller;
 use Framework\Pagination\Pagination;
+use Framework\Session\Session;
 
 class HistoryController extends Controller
 {
@@ -17,6 +18,9 @@ class HistoryController extends Controller
 
     public function getHistory($request)
     {
+        if(!Session::getSessionKey("login")) {
+            header('Location: /');
+        }
         extract($request);
         $pageTitle = "HistoryPage";
         $mapper = new OrderMapper();
@@ -28,6 +32,9 @@ class HistoryController extends Controller
 
     public function sortHistory($request)
     {
+        if(!Session::getSessionKey("login")) {
+            header('Location: /');
+        }
         extract($request);
         $pageTitle = 'HistorySearch';
         $mapper = new OrderMapper();

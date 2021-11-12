@@ -13,6 +13,9 @@ class SignInController extends Controller
 
     public function getLoginPage($request = [])
     {
+        if(Session::getSessionKey("login")) {
+            header('Location: /');
+        }
         extract($request);
         $pageTitle = 'LoginPage';
         return compact('pageTitle');

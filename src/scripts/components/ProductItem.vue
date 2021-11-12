@@ -42,14 +42,15 @@ export default {
     },
     methods: {
         addProductToCart() {
-            this.$store.dispatch('setCartProduct', {id: this.id, title: this.title, alias: this.alias, price: this.price, category: this.category, image: this.image, quantity: 1});
-            this.disable;
+            if(this.$store.getters.isAuth) {
+                this.$store.dispatch('setCartProduct', {id: this.id, title: this.title, alias: this.alias, price: this.price, category: this.category, image: this.image, quantity: 1});
+                this.disable;
+            }
         }
     },
     computed: {
         disable() {
-            this.$store.dispatch('checkProduct', this.id)
-            return this.$store.getters.getIsAdded;
+            return this.$store.getters.isAdded(this.id);
         }
     }
 }

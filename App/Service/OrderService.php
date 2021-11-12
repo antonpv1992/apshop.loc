@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Mapper\ProductMapper;
 use Framework\Helpers\Sql;
+use Framework\Session\Session;
 
 trait OrderService
 {
@@ -29,10 +30,11 @@ trait OrderService
     private function prepareWhereOrders($data)
     {
         $where = [];
+        array_push($where, ["user.id = " . Session::getSessionKey('id') . "" => ""]);
         for($i = 0; $i < count($data['filter']); $i++) {
             $key = $data['filter'][$i] . " LIKE '%$data[search]%'";
             if ($i === 0) {
-                array_push($where, [$key => ""]);
+                array_push($where, [$key => "AND"]);
             } else {
                 array_push($where, [$key => "OR"]);
             }
@@ -48,7 +50,7 @@ trait OrderService
             $product = $mapper->getProductById($order['id']);
             $result[$key] = [
                 'productId' => $product->getId(),
-                'userId' => 2, //change user later
+                'userId' => Session::getSessionKey("id"),
                 'quantity' => $order['quantity'],
                 'price' => $product->getPrice()
             ];

@@ -21,11 +21,14 @@ import Spinner from "./Spinner";
 export default {
     components: {ProductItem, Spinner},
     mounted() {
-        const url = window.location.href;
-        if(url === 'http://apshop.loc/shop') {
-             this.$store.dispatch('fetchProducts');
+        let url = window.location.href;
+        if(url === 'http://apshop.loc/shop' || url === 'http://apshop.loc/shop/' ) {
+            this.$store.dispatch('fetchProducts');
         } else {
-            const category = url.slice(url.lastIndexOf("/") + 1, url.length);
+            if(url.slice(url.lastIndexOf("/") + 1, url.length) === "") {
+                url = url.substring(0, url.length - 1);
+            }
+            let category = url.slice(url.lastIndexOf("/") + 1, url.length);
             this.$store.dispatch('fetchProductsByCategory', category);
         }
        

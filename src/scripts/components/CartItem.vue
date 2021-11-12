@@ -2,7 +2,7 @@
     <ul class="checkout-good">
         <li>
             <a :href="`/shop/${category}/${alias}`">
-                <img :src="`/assets/images/${image}`" :alt="category"/>
+                <img :src="`assets/images/${image}`" :alt="category"/>
             </a>
         </li>
         <li>

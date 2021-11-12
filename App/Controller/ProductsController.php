@@ -24,7 +24,7 @@ class ProductsController extends Controller
         extract($request);
         $pageTitle = 'CategoryPage';
         $mapper = new ProductMapper();
-        $products = $mapper->getProductsByCaetgory($category);
+        $products = $mapper->getProductsByCategory($category);
         return compact('pageTitle', 'products');
     }
 

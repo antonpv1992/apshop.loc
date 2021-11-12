@@ -203,3 +203,110 @@
 [Sun Nov 07 23:41:31 2021] MyLog Exception: Bad Route Exception
 [Sun Nov 07 23:45:15 2021] MyLog Exception: Bad Route Exception
 [Sun Nov 07 23:45:56 2021] MyLog Exception: Bad Route Exception
+[Tue Nov 09 17:46:42 2021] MyLog Exception: Bad Route Exception
+[Wed Nov 10 12:48:17 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Core i5-10300H)  OR  (feature.feature = cpu AND fv.value = Intel Core i5-1135G7)' at line 1
+[Wed Nov 10 12:49:36 2021] MyLog Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'screenDiagonal' in 'where clause'
+[Wed Nov 10 12:51:27 2021] MyLog Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'screenDiagonal' in 'where clause'
+[Wed Nov 10 12:52:35 2021] MyLog Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'screenDiagonal' in 'where clause'
+[Wed Nov 10 12:52:53 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Core i5-10300H)  OR  (feature.feature = cpu AND fv.value = Intel Core i5-1135G7)' at line 1
+[Wed Nov 10 12:53:04 2021] MyLog Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'screenDiagonal' in 'where clause'
+[Wed Nov 10 12:54:06 2021] MyLog Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'screenDiagonal' in 'where clause'
+[Wed Nov 10 12:54:12 2021] MyLog Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'screenType' in 'where clause'
+[Wed Nov 10 12:54:27 2021] MyLog Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'screenDiagonal' in 'where clause'
+[Wed Nov 10 12:55:27 2021] MyLog Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'feature_value.value' in 'field list'
+[Wed Nov 10 12:55:47 2021] MyLog Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'screenDiagonal' in 'where clause'
+[Wed Nov 10 12:56:19 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIKI '%screenDiagonal%' AND `fv`.value = 10.95)) GROUP BY product.id' at line 1
+[Wed Nov 10 12:56:33 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #12 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'apshop_test.feature.feature' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+[Wed Nov 10 13:15:28 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'feature'
+[Wed Nov 10 13:15:54 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'feature'
+[Wed Nov 10 14:05:02 2021] MyLog Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'screen_diagonal' in 'where clause'
+[Wed Nov 10 14:05:23 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Dimensity 1200)) GROUP BY product.id' at line 1
+[Wed Nov 10 14:12:02 2021] MyLog Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'feature_value.value' in 'field list'
+[Wed Nov 10 14:12:22 2021] MyLog Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'feature_value.value' in 'field list'
+[Wed Nov 10 14:12:39 2021] MyLog Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'feature_value.value' in 'where clause'
+[Wed Nov 10 14:13:01 2021] MyLog Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'screen_diagonal' in 'where clause'
+[Wed Nov 10 14:13:19 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Dimensity 1200))' at line 1
+[Wed Nov 10 14:14:56 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Dimensity 1200 ))' at line 1
+[Wed Nov 10 14:21:31 2021] MyLog Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'cpu' in 'where clause'
+[Wed Nov 10 14:21:49 2021] MyLog Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'product.feature' in 'where clause'
+[Wed Nov 10 14:35:33 2021] MyLog Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'features' in 'where clause'
+[Wed Nov 10 14:37:29 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #12 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'apshop_test.feature.feature' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+[Wed Nov 10 16:22:47 2021] MyLog Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'product.features' in 'where clause'
+[Wed Nov 10 16:23:23 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.category,  GROUP_CONCAT(DISTINCT feature.feature, ';', fv.value) AS product.fea' at line 1
+[Wed Nov 10 16:24:03 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.category,  GROUP_CONCAT(DISTINCT feature.feature, ';', fv.value) AS product.fea' at line 1
+[Wed Nov 10 16:24:03 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.category,  GROUP_CONCAT(DISTINCT feature.feature, ';', fv.value) AS product.fea' at line 1
+[Wed Nov 10 16:24:26 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.category,  GROUP_CONCAT(DISTINCT feature.feature, ';', fv.value) AS `product`.f' at line 1
+[Wed Nov 10 16:25:00 2021] MyLog Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'features' in 'where clause'
+[Wed Nov 10 16:25:09 2021] MyLog Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'product.features' in 'where clause'
+[Wed Nov 10 16:27:57 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'GROUP BY product.id' at line 1
+[Wed Nov 10 16:47:12 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''features') GROUP BY product.id' at line 1
+[Wed Nov 10 16:47:31 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'features) GROUP BY product.id' at line 1
+[Wed Nov 10 16:47:50 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'product.features) GROUP BY product.id' at line 1
+[Wed Nov 10 16:48:08 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''features') GROUP BY product.id' at line 1
+[Wed Nov 10 16:48:52 2021] MyLog Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'features' in 'where clause'
+[Wed Nov 10 16:49:04 2021] MyLog Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'product.features' in 'where clause'
+[Wed Nov 10 16:49:15 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.features FROM product JOIN product_category ON product_category.product_id = pr' at line 1
+[Wed Nov 10 16:50:00 2021] MyLog Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'product.features' in 'where clause'
+[Wed Nov 10 16:50:15 2021] MyLog Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'features' in 'where clause'
+[Wed Nov 10 16:59:58 2021] MyLog Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'feature.features' in 'where clause'
+[Wed Nov 10 17:04:21 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1056 Can't group on '???'
+[Wed Nov 10 17:04:21 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1056 Can't group on '???'
+[Wed Nov 10 17:05:05 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'apshop_test.product.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+[Wed Nov 10 17:05:29 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1056 Can't group on '???'
+[Wed Nov 10 17:20:34 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1056 Can't group on '???'
+[Wed Nov 10 17:21:29 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1056 Can't group on '???'
+[Wed Nov 10 17:22:54 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE FIND_IN_SET('screen_diagonal;15.6', features)' at line 1
+[Wed Nov 10 17:23:17 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE FIND_IN_SET('screen_diagonal;15.6', product.features)' at line 1
+[Wed Nov 10 17:23:38 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1056 Can't group on '???'
+[Wed Nov 10 17:23:38 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1056 Can't group on '???'
+[Wed Nov 10 17:29:25 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'GROUP BY product.id HAVING FIND_IN_SET('screen_diagonal;15.6', features)' at line 1
+[Wed Nov 10 17:29:25 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'GROUP BY product.id HAVING FIND_IN_SET('screen_diagonal;15.6', features)' at line 1
+[Wed Nov 10 17:30:09 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'GROUP BY product.id HAVING FIND_IN_SET('screen_diagonal;15.6', features)' at line 1
+[Wed Nov 10 17:31:59 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+[Wed Nov 10 18:41:08 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'product.title LIKE '%%' AND (FIND_IN_SET('screen_diagonal;15.6', features)' at line 1
+[Wed Nov 10 18:41:08 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'product.title LIKE '%%' AND (FIND_IN_SET('screen_diagonal;15.6', features)' at line 1
+[Wed Nov 10 18:41:30 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+[Wed Nov 10 18:42:09 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+[Wed Nov 10 18:42:30 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+[Wed Nov 10 18:42:37 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+[Wed Nov 10 19:46:55 2021] MyLog Exception: Bad Route Exception
+[Wed Nov 10 19:47:14 2021] MyLog Exception: Bad Route Exception
+[Wed Nov 10 19:47:23 2021] MyLog Exception: Bad Route Exception
+[Wed Nov 10 19:55:13 2021] MyLog Exception: Bad Route Exception
+[Wed Nov 10 19:55:14 2021] MyLog Exception: Bad Route Exception
+[Wed Nov 10 19:55:27 2021] MyLog Exception: Bad Route Exception
+[Wed Nov 10 19:55:28 2021] MyLog Exception: Bad Route Exception
+[Wed Nov 10 19:55:44 2021] MyLog Exception: Bad Route Exception
+[Wed Nov 10 19:55:45 2021] MyLog Exception: Bad Route Exception
+[Wed Nov 10 19:55:53 2021] MyLog Exception: Bad Route Exception
+[Wed Nov 10 19:55:54 2021] MyLog Exception: Bad Route Exception
+[Wed Nov 10 20:17:25 2021] MyLog Exception: Bad Route Exception
+[Wed Nov 10 20:19:47 2021] MyLog Exception: Bad Route Exception
+[Wed Nov 10 21:02:16 2021] MyLog Exception: Not found controller
+[Wed Nov 10 21:07:02 2021] MyLog Exception: Bad Route Exception
+[Wed Nov 10 21:07:12 2021] MyLog Exception: Bad Route Exception
+[Wed Nov 10 21:07:12 2021] MyLog Exception: Not found controller
+[Wed Nov 10 22:21:21 2021] MyLog Exception: Bad Route Exception
+[Wed Nov 10 22:23:00 2021] MyLog Exception: Bad Route Exception
+[Wed Nov 10 22:24:38 2021] MyLog Exception: Bad Route Exception
+[Wed Nov 10 22:32:40 2021] MyLog Exception: Bad Route Exception
+[Wed Nov 10 22:45:49 2021] MyLog Exception: Bad Route Exception
+[Wed Nov 10 23:33:38 2021] MyLog Exception: Bad Route Exception
+[Wed Nov 10 23:34:58 2021] MyLog Exception: Bad Route Exception
+[Thu Nov 11 17:25:30 2021] MyLog Exception: Not found controller
+[Thu Nov 11 17:25:33 2021] MyLog Exception: Not found controller
+[Thu Nov 11 17:25:47 2021] MyLog Exception: Not found controller
+[Thu Nov 11 17:25:52 2021] MyLog Exception: Not found controller
+[Thu Nov 11 17:25:56 2021] MyLog Exception: Not found controller
+[Thu Nov 11 17:25:58 2021] MyLog Exception: Not found controller
+[Thu Nov 11 17:26:02 2021] MyLog Exception: Not found controller
+[Thu Nov 11 17:26:33 2021] MyLog Exception: Not found controller
+[Thu Nov 11 17:26:35 2021] MyLog Exception: Not found controller
+[Thu Nov 11 17:26:38 2021] MyLog Exception: Not found controller
+[Thu Nov 11 17:26:48 2021] MyLog Exception: Not found controller
+[Thu Nov 11 17:26:50 2021] MyLog Exception: Not found controller
+[Thu Nov 11 17:26:52 2021] MyLog Exception: Not found controller
+[Thu Nov 11 17:45:27 2021] MyLog Exception: Not found controller
+[Thu Nov 11 18:01:50 2021] MyLog Exception: Bad Route Exception
+[Fri Nov 12 11:27:35 2021] MyLog Exception: Bad Route Exception
+[Fri Nov 12 12:14:18 2021] MyLog Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'user.id = 1' at line 1

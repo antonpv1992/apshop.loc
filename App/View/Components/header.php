@@ -6,7 +6,9 @@
       </a>
     </h1>
     <div class="cart-wrapper">
+    <?php if("Framework\\Session\\Session"::getSessionKey("login")): ?>
       <cart-button></cart-button>
+    <?php endif ?>
     </div>
   </header>
 </div>

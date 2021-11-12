@@ -47,14 +47,15 @@ export default {
             this.$store.dispatch('setQuantity', {id: this.id, quantity: this.counter});
         },
         addProductToCart() {
-            this.$store.dispatch('setCartProduct', {id: this.id, title: this.title, alias: this.alias, price: this.price, category: this.category, image: this.image, quantity: this.counter});
-            this.disable;
+            if(this.$store.getters.isAuth) {
+                this.$store.dispatch('setCartProduct', {id: this.id, title: this.title, alias: this.alias, price: this.price, category: this.category, image: this.image, quantity: this.counter});
+                this.disable;
+            }
         }
     },
     computed: {
         disable() {
-            this.$store.dispatch('checkProduct', this.id)
-            return this.$store.getters.getIsAdded;
+            return this.$store.getters.isAdded(this.id);
         },
         getCounter() {
             const product = this.$store.getters.getCartProducts.filter(product => product.id === this.id);

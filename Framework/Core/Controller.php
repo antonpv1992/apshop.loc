@@ -2,6 +2,9 @@
 
 namespace Framework\Core;
 
+use phpDocumentor\Reflection\Types\Boolean;
+use PhpParser\Node\Expr\Cast\Bool_;
+
 abstract class Controller
 {
     protected $request = [];
@@ -29,9 +32,11 @@ abstract class Controller
     public function jsonSerialize($array)
     {
         $serializeArray = [];
-        foreach($array as $obj) {
-            array_push($serializeArray, $obj->jsonSerialize());
-        };
+        if(is_array($array)) {
+            foreach($array as $obj) {
+                array_push($serializeArray, $obj->jsonSerialize());
+            };
+        }
         return $serializeArray;
     }
 

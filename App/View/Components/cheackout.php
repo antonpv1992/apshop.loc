@@ -6,7 +6,6 @@
       include_once COMPONENTS . DS . "checkout-header.php";
     ?>
       <cart-product></cart-product>
-      <!--<button class="checkout-order">Make An Order</button>-->
     </div>
   </div>
 </main>

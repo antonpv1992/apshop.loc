@@ -76,6 +76,20 @@ class Sql
         return " GROUP BY $field";
     }
 
+    public function having($conditions = [])
+    {
+        if (!$conditions) {
+            return "";
+        }
+        $sql = " HAVING";
+        foreach ($conditions as $condition) {
+            foreach($condition as $params => $operator) {
+                $sql .= " $operator $params";
+            }
+        }
+        return $sql;
+    }
+
     public function update()
     {
 

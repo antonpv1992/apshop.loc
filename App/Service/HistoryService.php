@@ -8,13 +8,13 @@ trait HistoryService
     {
         $result = [];
         $result['search'] = $data['hsearch'] ?? "";
-        $result['filter'] = isset($data['hfilter'])
+        $result['filter'] = isset($data['hfilter']) && !empty($data['hfilter'])
             ? $this->replaceFields($data['hfilter'])
             : [0 => 'product.title'];
-        $result['sortCategory'] = isset($data['hsort'])
+        $result['sortCategory'] = isset($data['hsort']) && $data['hsort'] !== ""
             ? $this->replaceFields(explode('-', $data['hsort'])[0])
             : "";
-        $result['sortDirection'] = isset($data['hsort'])
+        $result['sortDirection'] = isset($data['hsort']) && $data['hsort'] !== ""
             ? $this->replaceDirection(explode('-', $data['hsort'])[1])
             : "";
         return $result;

@@ -5,6 +5,7 @@ namespace App\Mapper;
 use App\Service\OrderService;
 use Framework\Core\Mapper;
 use Framework\Helpers\Sql;
+use Framework\Session\Session;
 
 class OrderMapper extends Mapper
 {
@@ -17,18 +18,31 @@ class OrderMapper extends Mapper
     public function getAllOrders()
     {
         $sql = $this->ordersQuery([['user.id = :userID' => ""]]);
-        $dbData = $this->storage->query($sql, ['userID' => 2]);//change user later
+        $dbData = $this->storage->query($sql, ['userID' => Session::getSessionKey("id")]);
         return $this->getMapObjects($dbData);
     }
 
     public function getPaginationOrders($limit)
     {
         $sql = $this->ordersQuery([['user.id = :userID' => ""]], false, false, $limit);
-        $dbData = $this->storage->query($sql, ['userID' => 2]);//change user later
+        $dbData = $this->storage->query($sql, ['userID' => Session::getSessionKey("id")]);
         return $this->getMapObjects($dbData);
     }
 
-    public function getSortOrders($data)
+    public function getSortOrders($data, $limit = false)
+    {
+        $where = $this->prepareWhereOrders($data);
+        $order = $direction = false;
+        if(!empty($data['sortCategory'])) {
+            $order = $data['sortCategory'];
+            $direction = $data['sortDirection'];
+        }
+        $sql = $this->ordersQuery($where, $order, $direction, $limit);
+        $dbData = $this->storage->query($sql);
+        return $this->getMapObjects($dbData);
+    }
+
+    public function countPaginateOrders($data)
     {
         $where = $this->prepareWhereOrders($data);
         $order = $direction = false;
@@ -38,14 +52,14 @@ class OrderMapper extends Mapper
         }
         $sql = $this->ordersQuery($where, $order, $direction);
         $dbData = $this->storage->query($sql);
-        return $this->getMapObjects($dbData);
+        return $dbData ? (isset($dbData[0]) ? count($dbData) : 1) : 1;
     }
 
     public function saveOrder($order)
     {
         if ($this->checkAmountProducts($order)) {
             $prepareOrder = $this->checkOrderProducts($order);
-            return $this->storage->insertOrder($prepareOrder);
+            $this->storage->insertOrder($prepareOrder);
         }
         return false;
     }

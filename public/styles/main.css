@@ -109,6 +109,7 @@
   list-style: none;
   padding: 20px;
   cursor: pointer;
+  position: relative;
 }
 
 .navigation-item:last-child {
@@ -138,6 +139,22 @@
 
 .navigation-list .navigation-item label:hover {
   cursor: pointer;
+}
+
+.navigation-list .navigation-item .drop {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  transition: 0.5s ease-in-out;
+  background: #1abc9c;
+  width: 150px;
+  display: none;
+}
+
+.navigation-list .navigation-item:hover .drop {
+  display: block;
 }
 
 .active {
@@ -397,6 +414,7 @@
   flex-wrap: wrap;
   flex: 0 1 70%;
   background: #fff;
+  align-content: flex-start;
 }
 
 .goods-filters {
@@ -518,6 +536,28 @@
 
 .goods-filters .filter-box .single-filter:last-child {
   margin-bottom: 0;
+}
+
+.goods-filters .filter-box .single-filter .feature {
+  cursor: pointer;
+}
+
+.goods-filters .filter-box .single-filter .feature:hover {
+  color:#1abc9c;
+}
+
+.goods-filters .filter-box .single-filter .checked-feature {
+  color:#1abc9c;
+}
+
+.goods-filters .filter-box .single-filter .checked-feature i:before {
+  font-family: "Font Awesome 5 Free"; 
+  font-weight: 900; 
+  content: "\f14a";
+}
+
+.goods-filters .filter-box .single-filter .checked-feature:hover {
+  color:#000;
 }
 
 .checkout {
@@ -931,4 +971,9 @@
   color: #000;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.navigation-item label input {
+  background: transparent;
+  border: none;
 }

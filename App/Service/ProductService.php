@@ -69,4 +69,52 @@ trait ProductService
         }
         return $feat;
     }
+
+    private function searchAndFilter($search, $filters)
+    {
+        $sqlO = new Sql();
+        $sql = $sqlO->select([
+            'product.*',
+            $sqlO->concat('category.name', 'category', 'DISTINCT'),
+            $sqlO->concat("feature.feature, ';', fv.value", 'features', 'DISTINCT')
+        ], $this->table) 
+        . $sqlO->join([
+            'product_category' => 'product_category.product_id = product.id',
+            'category' => 'product_category.category_id = category.id',
+            'product_feature_value AS pfv' => 'pfv.product_id = product.id',
+            'feature_value AS fv' => 'fv.id = pfv.feature_value_id',
+            'feature' => 'feature.id = pfv.feature_value_feature_id'
+        ])
+        . $sqlO->group('product.id')
+        . $this->filtersHaving($search, $filters);
+
+        return $sql;
+    }
+
+    private function filtersHaving($search, $filters) 
+    {  
+        $sqlO = new Sql();
+        $currentFilter = "";
+        $condition = "";
+        $having = [["(product.title LIKE '%$search%'" => '']];
+        foreach($filters as $obj) {
+            foreach($obj as $filter => $values) {
+                foreach($values as $value) {
+                    if($currentFilter === "" || $currentFilter !== $filter) {
+                        $currentFilter = $filter;
+                        $condition = ") AND (";
+                    } else {
+                        $condition = " OR ";
+                    }
+                    $group = $currentFilter === 'category' ? 'category' : 'features';
+                    $dbfilter =  $currentFilter !== 'category' ? preg_replace_callback('/[A-Z]/', fn($matches) => "_" . strtolower($matches[0]), $filter) . ";": '';
+                    array_push($having, ["(FIND_IN_SET(\"$dbfilter$value\", $group))" => "$condition"]);
+                }
+            }
+        }
+        $sql = $sqlO->having([
+            ...$having
+        ]) . ')';
+        return $sql;
+    }
 }

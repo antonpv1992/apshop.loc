@@ -17,13 +17,16 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-      },
+      }
     ],
   },
   plugins: [
     new VueLoaderPlugin(),
   ],
   resolve: {
-    extensions: ['.js', '.vue']
+    extensions: ['.js', '.vue'],
+    alias: {
+      'vue$': 'vue/dist/vue.esm-browser.js'
+    }
   }
 };

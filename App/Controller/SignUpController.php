@@ -13,6 +13,9 @@ class SignUpController extends Controller
 
     public function getRegistrationPage($request = [])
     {
+        if(Session::getSessionKey("login")) {
+            header('Location: /');
+        }
         extract($request);
         $pageTitle = 'RegistrationPage';
         return compact('pageTitle');
@@ -20,9 +23,7 @@ class SignUpController extends Controller
 
     public function registration($request = [])
     {
-        //print_r($request);
         extract($request);
-        //echo $login . $email . $password . $confirm_password;
         $mapper = new UserMapper();
         if(!$mapper->saveUser(['login' => $login, 'email' => $email, 'password' => $password, 'confirm_password' => $confirm_password])) {
             $session = new Session();
